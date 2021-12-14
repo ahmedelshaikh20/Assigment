@@ -6,10 +6,11 @@ Coding Assigment was about creating endpoint to create shipment for two differen
 
 ## Installation
 
-Install node modules
+Install node modules and run index.js file and now the server is listening on port 5000
 
 ```bash
 npm install
+node index.js
 ```
 
 ## Api EndPoints
