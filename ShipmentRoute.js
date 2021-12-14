@@ -9,7 +9,7 @@ return res.status(422).json({ error :"Shipment Type is not valid"});
 const validationmiddleware =  custom_middleware(schema);
 validationmiddleware(req,res,next)
 };
-router.route('/All').get(functions.getShipments)
+router.route('/all').get(functions.getShipments);
 router.route('/:type')
 .post(valdationStrategy,functions.postShipment)
 

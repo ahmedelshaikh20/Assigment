@@ -5,7 +5,7 @@ const Shipment = require('./ShipmentRoute');
 var mongoose = require('mongoose');
 //Connection String to Monogodb
 const dbUri =
-  'mongodb+srv://ahmed:123456789A@shipment.d1rgh.mongodb.net/Shipment-Service?retryWrites=true&w=majority';
+  'mongodb+srv://essa:test1234@shipment.d1rgh.mongodb.net/Shipment-Service?retryWrites=true&w=majority';
 mongoose
   .connect(dbUri)
   .then(() => console.log('Connected Db'))

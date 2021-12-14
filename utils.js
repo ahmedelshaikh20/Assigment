@@ -12,8 +12,7 @@ const postShipment = async (req, res) => {
       },
       packageWeight: { weight: req.body.packageWeight.weight, unit: req.body.packageWeight.unit },
     }).save();
-    console.log('lol');
-    res.status(200).send(`Shipment to ${req.params.type} has been completed successfully!`);
+    res.status(200).send(`Shipment to ${req.params.type} has  completed successfully!`);
   } catch (err) {
     res.status(400).send(err.message);
   }
