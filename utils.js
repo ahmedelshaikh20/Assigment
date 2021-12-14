@@ -1,17 +1,19 @@
 const Shipment = require('./models/Shipment');
 const postShipment =async (req , res) => {
     try{
+
     await new Shipment(
         {
-            serviceType: req.params.type, serviceId: req.body.serviceID, 
-            packageDimensions :{width : req.body.width ,height : req.body.height , length : req.body.length ,unit:req.body.unit},
-            packageWeight:{weight:req.body.weight , unit : req.body.unit
+            serviceId: req.body.serviceID,serviceType: req.params.type, 
+            packageDimensions :{width : req.body.packageDimensions.width ,height :req.body.packageDimensions.height , length : req.body.packageDimensions.length ,unit:req.body.packageDimensions.unit},
+            packageWeight:{weight:req.body.packageWeight.weight , unit : req.body.packageWeight.unit
         }}).save();
-        res.status(200).send(`Shipment to ${req.body.type} completed successfully!`);
+        
+    res.status(200).send(`Shipment to ${req.params.type} has been completed successfully!`);
 
 }
 catch(err){
-res.status(400).send(err);
+res.status(400).send(err.message);
 }
 } 
 

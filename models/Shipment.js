@@ -2,13 +2,13 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const ShipmentSchema  = new Schema({
+serviceType:{
+        type:String,
+        enum:["Fedex" , "Ups"]  
+    },
 serviceId:{
     type:String,
     enum:["fedexAIR","fedexGround","UPSExpress","UPS2DAY"]
-},
-serviceType:{
-    type:String,
-    enum:["Fedex" , "Ups"]  
 },
 packageDimensions:{
 width:{
@@ -23,11 +23,11 @@ length:{
     type:Number,
     required:true
 },
-unit:{type:String,required :true}
+unit:{type:String,required:true}
 },
 packageWeight:{
-    weight:{type : Number,
-    required:true},
+    weight:{type : Number,required:true
+    },
     unit:{type:String , required:true}
 }
 }, {timestamps:true})

@@ -5,90 +5,101 @@ const errorMessages = require('./error_custom_messages')
 const schemas={
 FedexBody:
 Joi.object().keys({
-    serviceType:Joi.string().valid('Fedex').required().messages({
-        'string.empty': errorMessages("ServiceType").EmptyString,
-        'any.required': errorMessages("ServiceType").Required,
-        'any.invalid ':errorMessages("ServiceType").InvalidString
-      }),
     serviceId: Joi.string().valid('fedexAir','fedexGround').required().messages({
         'string.empty': errorMessages("ServiceId").EmptyString,
         'any.required': errorMessages("ServiceId").Required,
-        'any.invalid ':errorMessages("ServiceId").InvalidString
+        'any.only':errorMessages("ServiceId").InvalidString
+
       }),
     packageDimensions:Joi.object().keys({
-        width: Joi.number().required().messages({
+        width: Joi.number().required().min(1).messages({
             'any.empty': errorMessages("Width").EmptyString,
             'any.required': errorMessages("Width").EmptyString,
-            'any.invalid ':errorMessages("Width").InvalidString
+            'number.min':errorMessages("Width").MinRequired
+
           }),
-        height:Joi.number().required().messages({
+        height:Joi.number().required().min(1).messages({
             'any.empty': errorMessages("Height").EmptyString,
             'any.required': errorMessages("Height").Required,
-            'any.invalid ':errorMessages("Height").InvalidString
+            'number.min':errorMessages("Height").MinRequired
+
           }),
-        length:Joi.number().required().messages({
+        length:Joi.number().required().min(1).messages({
             'any.empty': errorMessages("Length").EmptyString,
             'any.required': errorMessages("Length").Required,
-            'any.invalid ':errorMessages("Length").InvalidString
+            'number.min':errorMessages("Length").MinRequired
+
           }),
         unit:Joi.string().valid('cm').required().messages({
             'any.empty': errorMessages("Unit in dimensions").EmptyString,
             'any.required': errorMessages("Unit in dimensions").Required,
-            'any.invalid ':errorMessages("Unit in dimensions").InvalidUnit
+            'any.only':errorMessages("Unit in dimensions").InvalidUnit
           })
     }),
     packageWeight:Joi.object().keys({
-        weight:Joi.number().required().messages({
+        weight:Joi.number().required().min(1).messages({
+            'any.empty': errorMessages("Weight").EmptyString,
+            'any.required': errorMessages("Weight").Required,
+            'any.only ':errorMessages("Weight").InvalidUnit,
+            'number.min':errorMessages("Weight").MinRequired
+          }),
+          unit:Joi.string().valid('gram').required().messages({
             'any.empty': errorMessages("Unit in Weight").EmptyString,
             'any.required': errorMessages("Unit in Weight").Required,
-            'any.invalid ':errorMessages("Unit in Weight").InvalidUnit
+            'any.only':errorMessages("Unit in Weight").InvalidUnit
           })
+          
     })
   }),
   UpsBody:
   Joi.object().keys({
-      serviceType:Joi.string().valid('Ups').required().messages({
-          'string.empty': errorMessages("ServiceType").EmptyString,
-          'any.required': errorMessages("ServiceType").Required,
-          'any.invalid ':errorMessages("ServiceType").InvalidString
-        }),
       serviceId: Joi.string().valid('UPSExpress','UPS2DAY').required().messages({
           'string.empty': errorMessages("ServiceId").EmptyString,
           'any.required': errorMessages("ServiceId").Required,
-          'any.invalid ':errorMessages("ServiceId").InvalidString
+          'any.only':errorMessages("serviceId").InvalidString
+
         }),
       packageDimensions:Joi.object().keys({
-          width: Joi.number().required().messages({
+          width: Joi.number().required().min(1).messages({
               'any.empty': errorMessages("Width").EmptyString,
               'any.required': errorMessages("Width").EmptyString,
-              'any.invalid ':errorMessages("Width").InvalidString
+              'any.only ':errorMessages("Width").InvalidString,
+              'any.min':errorMessages("Width").MinRequired
+
             }),
-          height:Joi.number().required().messages({
+          height:Joi.number().required().min(1).messages({
               'any.empty': errorMessages("Height").EmptyString,
               'any.required': errorMessages("Height").Required,
-              'any.invalid ':errorMessages("Height").InvalidString
+              'any.only ':errorMessages("Height").InvalidString,
+              'any.min':errorMessages("Height").MinRequired
+
             }),
-          length:Joi.number().required().messages({
+          length:Joi.number().required().min(1).messages({
               'any.empty': errorMessages("Length").EmptyString,
               'any.required': errorMessages("Length").Required,
-              'any.invalid ':errorMessages("Length").InvalidString
+              'any.only ':errorMessages("Length").InvalidString,
+              'any.min':errorMessages("Length").MinRequired
+
             }),
           unit:Joi.string().valid('inch').required().messages({
               'any.empty': errorMessages("Unit in dimensions").EmptyString,
               'any.required': errorMessages("Unit in dimensions").Required,
-              'any.invalid ':errorMessages("Unit in dimensions").InvalidUnit
+              'any.only':errorMessages("Unit in dimensions").InvalidUnit,
+
             })
       }),
       packageWeight:Joi.object().keys({
-          weight:Joi.number().required().messages({
+          weight:Joi.number().min(1).required().messages({
               'any.empty': errorMessages("Unit").EmptyString,
               'any.required': errorMessages("Unit").Required,
-              'any.invalid ':errorMessages("Unit").InvalidString
+              'any.only ':errorMessages("Unit").InvalidString,
+              'any.min':errorMessages("Weight").MinRequired
+
             }),
             unit:Joi.string().valid('pound').required().messages({
                 'any.empty': errorMessages("Unit in Weight").EmptyString,
                 'any.required': errorMessages("Unit in Weight").Required,
-                'any.invalid ':errorMessages("Unit in Wegiht").InvalidUnit
+                'any.only':errorMessages("Unit in Wegiht").InvalidUnit
               })
       })
     })}
