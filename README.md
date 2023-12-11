@@ -95,7 +95,9 @@ node index.js
 
 - **Success response** --> status code: 200, response body:
 ```json
+{
 Shipment to <ServiceType> has completed successfully!
+}
 ```
 - **Error response** --> status code: 422, response body:
 ```json
